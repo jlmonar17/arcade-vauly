@@ -62,10 +62,9 @@ export default async function GameDetailPage({
             </div>
           </div>
           <div className="detail-actions">
-            {/* Se conecta a /juegos/[id]/jugar en el Paso 8 */}
-            <button type="button" className="btn xl pulse">
+            <Link href={`/juegos/${game.id}/jugar`} className="btn xl pulse">
               ▶ JUGAR AHORA
-            </button>
+            </Link>
             <Link href="/" className="btn ghost lg">
               VOLVER AL VAULT
             </Link>
