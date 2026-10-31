@@ -36,11 +36,24 @@
   --bronze: #d97a3a;
   --line: rgba(0, 245, 255, 0.18);
   --line-2: rgba(255, 255, 255, 0.06);
-  --pixel: var(--font-press-start), system-ui, monospace;
-  --mono: var(--font-jetbrains-mono), var(--font-courier-prime), "Courier New", monospace;
+  /* Pila idéntica a la plantilla. next/font registra estas familias por nombre, pero sus
+     variables --font-* añaden una fuente de reserva basada en Arial que cambia los glifos
+     que las fuentes no incluyen (▲ ⌕ ◆ ★). */
+  --pixel: "Press Start 2P", system-ui, monospace;
+  --mono: "JetBrains Mono", "Courier Prime", "Courier New", monospace;
 }
 
 * { box-sizing: border-box; }
+
+/* El preflight de Tailwind resetea encabezados y párrafos; la plantilla usa los valores por
+   defecto del navegador (p. ej. h1 en negrita sintetizada sobre Press Start 2P). */
+h1 { font-size: 2em; font-weight: bold; margin-block: 0.67em; }
+h2 { font-size: 1.5em; font-weight: bold; margin-block: 0.83em; }
+h3 { font-size: 1.17em; font-weight: bold; margin-block: 1em; }
+h4 { font-size: 1em; font-weight: bold; margin-block: 1.33em; }
+h5 { font-size: 0.83em; font-weight: bold; margin-block: 1.67em; }
+h6 { font-size: 0.67em; font-weight: bold; margin-block: 2.33em; }
+p { margin-block: 1em; }
 
 html, body {
   height: 100%;
@@ -231,6 +244,7 @@ a { color: inherit; text-decoration: none; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-align: center; /* los <a class="btn"> no lo heredan como lo hace un <button> */
   gap: 10px;
   padding: 12px 20px;
   font-family: var(--pixel);
@@ -319,6 +333,7 @@ a { color: inherit; text-decoration: none; }
 .av-search:focus-within { border-color: var(--cyan); box-shadow: 0 0 12px rgba(0,245,255,0.35); }
 .av-search input {
   flex: 1; background: transparent; border: 0; outline: 0;
+  padding: 1px 2px; /* el preflight de Tailwind lo pone a 0; la plantilla usa el default del navegador */
   color: var(--ink); font-size: 13px; letter-spacing: 0.04em;
 }
 .av-search input::placeholder { color: var(--ink-faint); }
